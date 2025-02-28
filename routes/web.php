@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,9 @@ Route::resource('roles', RoleController::class);
 Route::resource('permissions', PermissionController::class);
 
 Route::resource('departments', DepartmentController::class);
+
+Route::resource('users', UserController::class);
+
 
 
 require __DIR__.'/auth.php';

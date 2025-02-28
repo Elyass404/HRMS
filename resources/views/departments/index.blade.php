@@ -16,6 +16,7 @@
                     <ul>
                         <li><a href="{{ route('dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
                         <li><a href="{{ route('departments.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Departments</a></li>
+                        <li><a href="{{ route('users.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Employees</a></li>
                         {{-- <li><a href="{{ route('positions.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Positions</a></li> --}}
                         {{-- <li><a href="{{ route('contract_types.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Contract Types</a></li> --}}
                     </ul>
@@ -32,7 +33,8 @@
                         <h1 class="text-lg font-semibold">Departments</h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <img src="{{ Auth::user()->profile_photo_url }}" alt="Profile Photo" class="w-10 h-10 rounded-full">
+                        <img src="{{ Auth::user()->profile_picture }}" alt="Profile Photo" class="w-10 h-10 rounded-full">
+                    
                         <div>
                             <button id="dropdownButton" class="focus:outline-none">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 0 24 0 24" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +42,7 @@
                                 </svg>
                             </button>
                             <div id="dropdownMenu" class="hidden bg-white shadow-md rounded-lg py-2 mt-2">
-                                {{-- <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700">Manage Profile</a> --}}
+                                <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700">Manage Profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700">Logout</button>

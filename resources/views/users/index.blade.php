@@ -3,13 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Users</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styles */
-        .hidden { display: none; }
-        .block { display: block; }
-    </style>
 </head>
 <body>
     <div class="flex">
@@ -20,16 +15,10 @@
                 <nav class="mt-4">
                     <ul>
                         <li><a href="{{ route('dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
-                        @can('manage users')
-                        <li><a href="{{ route('roles.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Roles</a></li>
-                        <li><a href="{{ route('permissions.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Permissions</a></li>
-                        @endcan
-                        {{-- @can('manage departments') --}}
+                        {{-- @can('manage users') --}}
                         <li><a href="{{ route('departments.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Departments</a></li>
                         {{-- @endcan --}}
-                        {{-- @can('manage users') --}}
                         <li><a href="{{ route('users.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Employees</a></li>
-                        {{-- @endcan --}}
                         
                     </ul>
                 </nav>
@@ -42,7 +31,7 @@
             <header class="bg-white shadow">
                 <div class="flex justify-between items-center px-4 py-2">
                     <div>
-                        <h1 class="text-lg font-semibold">Dashboard</h1>
+                        <h1 class="text-lg font-semibold">Users</h1>
                     </div>
                     <div class="flex items-center space-x-4">
                         <img src="{{ Auth::user()->profile_photo_url }}" alt="Profile Photo" class="w-10 h-10 rounded-full">
@@ -64,12 +53,48 @@
                 </div>
             </header>
 
-            <!-- Dashboard Content -->
+            <!-- Users Content -->
             <main class="p-6 bg-gray-100 min-h-screen">
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Welcome, {{ Auth::user()->name }}!</h2>
-                    <p class="mb-4">This is your dashboard. Use the navigation menu to manage various sections.</p>
-                    <!-- Include role-based content and actions here -->
+                    <h2 class="text-2xl font-bold mb-4">Users</h2>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Add User</a>
+                    @if (session('success'))
+                        <div class="bg-green-500 text-white p-2 rounded mb-4">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <th class="w-1/6 px-4 py-2">ID</th>
+                                <th class="w-1/6 px-4 py-2">Name</th>
+                                <th class="w-1/6 px-4 py-2">Email</th>
+                                <th class="w-1/6 px-4 py-2">Position</th>
+                                <th class="w-1/6 px-4 py-2">Department</th>
+                                <th class="w-1/6 px-4 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $user->id }}</td>
+                                    <td class="border px-4 py-2">{{ $user->name }}</td>
+                                    <td class="border px-4 py-2">{{ $user->email }}</td>
+                                    <td class="border px-4 py-2">{{ $user->position }}</td>
+                                    <td class="border px-4 py-2">{{ $user->department }}</td>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">Show</a>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>

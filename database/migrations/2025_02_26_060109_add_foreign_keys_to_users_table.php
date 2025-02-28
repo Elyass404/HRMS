@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-                $table->unsignedBigInteger('department')->nullable();
-                $table->unsignedBigInteger('role')->nullable();
-                $table->unsignedBigInteger('contract_type')->nullable();
+                $table->unsignedBigInteger('department')->nullable()->change();
+                $table->unsignedBigInteger('contract_type')->nullable()->change();
+                $table->unsignedBigInteger('position')->nullable()->change();
     
                 $table->foreign('department')->references('id')->on('departments')->onDelete('set null');
-                $table->foreign('role')->references('id')->on('roles')->onDelete('set null');
                 $table->foreign('contract_type')->references('id')->on('contract_types')->onDelete('set null');
+                $table->foreign('position')->references('id')->on('positions')->onDelete('set null');
             
         });
     }
@@ -30,7 +30,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
              $table->dropForeign(['department_id']);
-            $table->dropForeign(['role_id']);
             $table->dropForeign(['contract_type_id']);
         });
     }

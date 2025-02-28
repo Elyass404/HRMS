@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-800 text-white h-screen">
+            <div class="p-4">
+                <h2 class="text-xl font-bold">Navigation</h2>
+                <nav class="mt-4">
+                    <ul>
+                        <li><a href="{{ route('dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
+                        <li><a href="{{ route('users.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Users</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white shadow p-4 flex justify-between items-center">
+                <h1 class="text-lg font-semibold">Add User</h1>
+            </header>
+
+            <main class="p-6 bg-gray-100 min-h-screen">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Add User</h2>
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text" name="name" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" name="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
+                            <input type="text" name="position" id="position" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
+                            <input type="text" name="department" id="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="hire_date" class="block text-sm font-medium text-gray-700">Hire Date</label>
+                            <input type="date" name="hire_date" id="hire_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                            <select name="status" id="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                {{-- @foreach($statuses as $status)
+                                    <option value="{{ $status }}">{{ $status }}</option>
+                                @endforeach --}}
+                                <option value="hello">:hello</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                            <input type="text" name="phone" id="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text" name="address" id="address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                            <input type="date" name="date_of_birth" id="date_of_birth" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select name="gender" id="gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                {{-- @foreach($genders as $gender)
+                                    <option value="{{ $gender }}">{{ $gender }}</option>
+                                @endforeach --}}
+                                <option value="hello">:hello</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="contract_type" class="block text-sm font-medium text-gray-700">Contract Type</label>
+                            <select name="contract_type" id="contract_type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                {{-- @foreach($contract_types as $contract_type)
+                                    <option value="{{ $contract_type }}">{{ $contract_type }}</option>
+                                @endforeach --}}
+                                <option value="hello">:hello</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                            <input type="file" name="profile_picture" id="profile_picture" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add User</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
