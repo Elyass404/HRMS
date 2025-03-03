@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Position;
+
 
 class UserController extends Controller
 {
@@ -14,7 +18,10 @@ class UserController extends Controller
     }
 
     public function create(){
-        return view('users.create');
+        $roles = Role::all();
+        $positions = Position::all();
+        $departments = Department::all();
+        return view('users.create', compact("roles","positions","departments"));
     }
 
     public function store(Request $request){
@@ -31,9 +38,10 @@ class UserController extends Controller
             'date_of_birth' => 'nullable|date',
             'gender' => 'nullable|string|max:255',
             'contract_type' => 'nullable|string|max:255',
+            'role' => 'required|string',
         ]);
 
-        User::create([
+        $user=User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -48,6 +56,8 @@ class UserController extends Controller
             'contract_type' => $request->contract_type,
             'profile_picture' => $request->profile_picture,
         ]);
+
+        $user->assignRole($request->role);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }

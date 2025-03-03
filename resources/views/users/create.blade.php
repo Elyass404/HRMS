@@ -49,13 +49,30 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                            <select name="role" id="role" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                            <input type="text" name="position" id="position" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            <select name="position" id="position" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-4">
                             <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
-                            <input type="text" name="department" id="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            <select name="department" id="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                @foreach ($departments as $department)
+                                    <option value="{{ $department->name }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-4">
@@ -69,8 +86,8 @@
                                 {{-- @foreach($statuses as $status)
                                     <option value="{{ $status }}">{{ $status }}</option>
                                 @endforeach --}}
-                                <option value="hello">:hello</option>
-
+                                <option value="Active">Active</option>
+                                <option value="Suspended">Suspended</option>
                             </select>
                         </div>
 
@@ -95,7 +112,8 @@
                                 {{-- @foreach($genders as $gender)
                                     <option value="{{ $gender }}">{{ $gender }}</option>
                                 @endforeach --}}
-                                <option value="hello">:hello</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
 
                             </select>
                         </div>
@@ -106,7 +124,7 @@
                                 {{-- @foreach($contract_types as $contract_type)
                                     <option value="{{ $contract_type }}">{{ $contract_type }}</option>
                                 @endforeach --}}
-                                <option value="hello">:hello</option>
+                                <option value="hello">contract_type</option>
 
                             </select>
                         </div>
