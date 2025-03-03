@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->string('department')->nullable();
             $table->date('hire_date')->nullable();
-            $table->string('status')->default('Active');
+            $table->enum('status', ['Active', 'Suspended', 'Pending'])->default('Active');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
