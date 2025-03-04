@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
+use App\Models\Department;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,10 +25,22 @@ Route::middleware('auth')->group(function () {
 Route::resource('roles', RoleController::class);
 Route::resource('permissions', PermissionController::class);
 
-Route::resource('departments', DepartmentController::class);
+// Route::resource('departments', DepartmentController::class);
+
+// Route::resource('users', UserController::class);
+// Route::get('users', [UserController::class,'index'])->name("users.index");
+
+
+Route::group(['middleware' => ['role:Manager,Admin']], function() {
+    
+    Route::resource('departments', DepartmentController::class);
+});
+
+Route::group(['middleware' => ['role:Admin']], function() {
 
 Route::resource('users', UserController::class);
-
+    
+});
 
 
 require __DIR__.'/auth.php';

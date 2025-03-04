@@ -66,6 +66,10 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
+    public function edit(User $user){
+        return view('user.edit', compact('user'));
+    }
+
     public function update(Request $request, User $user) {
         $request->validate([
             'name' => 'required|string|max:255',

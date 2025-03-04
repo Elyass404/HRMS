@@ -55,9 +55,9 @@
 
             <!-- Users Content -->
             <main class="p-6 bg-gray-100 min-h-screen">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Users</h2>
-                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Add User</a>
+                <div class="bg-white p-6 rounded-lg shadow-md ">
+                    <h2 class="text-2xl font-bold ">Users</h2>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-4 bg rounded-md bg-blue-600 px-4 py-2 ">Add User</a>
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-2 rounded mb-4">
                             {{ session('success') }}
@@ -84,7 +84,7 @@
                                     <td class="border px-4 py-2">{{ $user->department }}</td>
                                     <td class="border px-4 py-2">
                                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">Show</a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('users.create', $user->id) }}" class="btn btn-warning">Edit</a>
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')

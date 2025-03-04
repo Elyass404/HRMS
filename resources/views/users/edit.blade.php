@@ -29,7 +29,7 @@
 
             <main class="p-6 bg-gray-100 min-h-screen">
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Add User</h2>
+                    <h2 class="text-2xl font-bold mb-4">Edit User</h2>
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
@@ -70,7 +70,7 @@
                             <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
                             <select name="department" id="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                 @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    <option value="{{ $department->name }}">{{ $department->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -124,7 +124,7 @@
                                 {{-- @foreach($contract_types as $contract_type)
                                     <option value="{{ $contract_type }}">{{ $contract_type }}</option>
                                 @endforeach --}}
-                                <option value="1">contract_type</option>
+                                <option value="hello">contract_type</option>
 
                             </select>
                         </div>
