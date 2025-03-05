@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ContractTypeController;
 use App\Models\Department;
 
 Route::get('/', function () {
@@ -43,13 +44,16 @@ Route::group(['middleware' => ['role:Admin,HR, Manager']], function() {
 
 });
 
-Route::group(['middleware' => ['role:Admin,HR,Manager']], function() {
+Route::group(['middleware' => ['role:Admin,HR']], function() {
     Route::resource('positions', PositionController::class);
+    
+
 });
 
 Route::group(['middleware' => ['role:Admin']], function() {
 
 });
 
+Route::resource('contract-types', ContractTypeController::class);
 
 require __DIR__.'/auth.php';
