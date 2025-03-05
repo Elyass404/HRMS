@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Position;
 
 class PositionController extends Controller
 {
@@ -11,7 +12,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        $positions = Position::all();
+        return view('positions.index', compact('positions'));
     }
 
     /**
@@ -19,7 +21,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('positions.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        Position::create($request->all());
+
+        return redirect()->route('positions.index')->with('success', 'Position created successfully.');
+    
     }
 
     /**
@@ -41,24 +51,33 @@ class PositionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Position $position)
     {
-        //
+        return view('positions.edit', compact('position'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Position $position)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $position->update($request->all());
+
+        return redirect()->route('positions.index')->with('success', 'Position updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Position $position)
     {
-        //
+        $position->delete();
+        return redirect()->route('positions.index')->with('success', 'Position deleted successfully.');
+    
     }
 }
