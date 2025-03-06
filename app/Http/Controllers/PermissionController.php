@@ -21,7 +21,12 @@ class PermissionController extends Controller
             'name' => 'required|unique:permissions,name',
         ]);
 
-        Permission::create($request->all());
+        $guard_name  = $request->guard_name ?? "web";
+
+        Permission::create([
+            'name' => $request->name,
+            'guard_name' => $request->guard_name ?? "web",
+        ]);
         return redirect()->route('permissions.index')->with('success', 'Permission created successfully.');
     }
 

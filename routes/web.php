@@ -46,7 +46,7 @@ Route::group(['middleware' => ['role:Admin,HR, Manager']], function() {
 
 Route::group(['middleware' => ['role:Admin,HR']], function() {
     Route::resource('positions', PositionController::class);
-    
+    Route::resource('contract-types', ContractTypeController::class);
 
 });
 
@@ -54,6 +54,9 @@ Route::group(['middleware' => ['role:Admin']], function() {
 
 });
 
-Route::resource('contract-types', ContractTypeController::class);
+Route::middleware(['role:Admin'])->group(function () {
+    
+});
 
+Route::resource('permissions', PermissionController::class);
 require __DIR__.'/auth.php';

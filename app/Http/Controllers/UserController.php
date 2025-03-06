@@ -41,6 +41,8 @@ class UserController extends Controller
             'role' => 'required|string',
         ]);
 
+        
+
         $user=User::create([
             'name' => $request->name,
             'email' => $request->email,
