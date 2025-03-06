@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ContractTypeController;
+use App\Http\Controllers\LeaveController;
 use App\Models\Department;
 
 Route::get('/', function () {
@@ -32,11 +33,11 @@ Route::resource('permissions', PermissionController::class);
 // Route::resource('users', UserController::class);
 // Route::get('users', [UserController::class,'index'])->name("users.index");
 
-
+Route::resource('users', UserController::class);
 Route::group(['middleware' => ['role:Manager,Admin,HR,Employee']], function() {
     
     Route::resource('departments', DepartmentController::class);
-    Route::resource('users', UserController::class);
+    
     
 });
 
@@ -59,4 +60,9 @@ Route::middleware(['role:Admin'])->group(function () {
 });
 
 Route::resource('permissions', PermissionController::class);
+
+Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create');
+Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
+Route::post('/leaves/store', [LeaveController::class, 'store'])->name('leaves.store');
+
 require __DIR__.'/auth.php';

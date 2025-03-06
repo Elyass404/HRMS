@@ -8,18 +8,13 @@
 </head>
 <body>
     <div class="flex">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 text-white h-screen">
-            <div class="p-4">
-                <h2 class="text-xl font-bold">Navigation</h2>
-                <nav class="mt-4">
-                    <ul>
-                        <li><a href="{{ route('dashboard') }}" class="block py-2 px-4 hover:bg-gray-700">Dashboard</a></li>
-                        <li><a href="{{ route('users.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Users</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
+        @include('components.sidebar')
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            
+        <!-- Top Bar -->
+        @include('components.topbar')
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col">
@@ -142,5 +137,21 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // Toggle dropdown menu
+        document.getElementById('dropdownButton').addEventListener('click', function () {
+            var dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.remove('hidden');
+                dropdownMenu.classList.add('block');
+            } else {
+                dropdownMenu.classList.remove('block');
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+
 </body>
 </html>

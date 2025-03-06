@@ -19,6 +19,10 @@
                 <li><a href="{{ route('roles.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Roles</a></li>
                 <li><a href="{{ route('permissions.index') }}" class="block py-2 px-4 hover:bg-gray-700">Manage Permissions</a></li>
                 @endhasrole
+                {{-- @hasrole('Employee')
+                <li><a href="{{ route('leaves.create') }}" class="block py-2 px-4 hover:bg-gray-600">Demand Leave</a></li>
+                @endhasrole --}}
+                <li><a href="{{ route('leaves.create') }}" class="block py-2 px-4 hover:bg-gray-600">Demand Leave</a></li>
                        
             </ul>
         </nav>
