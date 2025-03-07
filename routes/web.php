@@ -61,8 +61,13 @@ Route::middleware(['role:Admin'])->group(function () {
 
 Route::resource('permissions', PermissionController::class);
 
-Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create');
-Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
-Route::post('/leaves/store', [LeaveController::class, 'store'])->name('leaves.store');
+Route::resource('leaves', LeaveController::class);
+
+// Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create');
+// Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
+// Route::post('/leaves/store', [LeaveController::class, 'store'])->name('leaves.store');
+// Route::get('/leaves/{id}/edit', [LeaveController::class, 'edit'])->name('leaves.edit');
+// Route::delete('/leaves/{id}', [LeaveController::class, 'destroy'])->name('leaves.destroy');
+
 
 require __DIR__.'/auth.php';

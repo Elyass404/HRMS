@@ -51,7 +51,7 @@
                             <!-- End Date -->
                             <div class="mb-4">
                                 <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
-                                <input type="date" name="end_date" id="end_date" min="{{ now()->addDay(8)->toDateString() }}"
+                                <input type="date" name="end_date" id="end_date" min="{{ now()->addWeek()->toDateString() }}"
                                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
                             </div>
 

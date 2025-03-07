@@ -16,6 +16,8 @@ class Leave extends Model
         'type',
         'status',
         'approver_id',
+        'manager_approval',
+        "hr_approval"
     ];
 
     public function employee()
@@ -27,4 +29,6 @@ class Leave extends Model
     {
         return $this->belongsTo(User::class, 'approver_id');
     }
+
+    
 }
