@@ -139,8 +139,11 @@ class LeaveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $leave = Leave::findOrFail($id);
+        $leave->delete();
+        return redirect()->route('leaves.index')->with('success','Leave Demande has been deleted with success');
+    
+}
 }

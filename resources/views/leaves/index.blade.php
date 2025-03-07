@@ -48,7 +48,7 @@
                                         <!-- Actions for Managers/HR -->
                                         <a href="{{ route('leaves.edit', $leave->id) }}" 
                                            class="text-blue-600 hover:text-blue-800">Edit</a> |
-                                           <form action="{{ route('leaves.destroy', $leave->id) }}" method="POST" class="inline-block">
+                                           <form action="{{ route('leaves.destroy', $leave) }}" method="POST" class="inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
