@@ -25,49 +25,46 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('roles', RoleController::class);
-Route::resource('permissions', PermissionController::class);
 
-// Route::resource('departments', DepartmentController::class);
+// Route::resource('leaves', LeaveController::class);
 
-// Route::resource('users', UserController::class);
-// Route::get('users', [UserController::class,'index'])->name("users.index");
 
-Route::resource('users', UserController::class);
-Route::group(['middleware' => ['role:Manager,Admin,HR,Employee']], function() {
-    
-    Route::resource('departments', DepartmentController::class);
-    
-    
-});
+Route::group(['middleware' => ['role:Manager,Admin,HR,Employee']], function () {
+Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create');
+Route::post('/leaves/store', [LeaveController::class, 'store'])->name('leaves.store');
+Route::delete('/leaves/{id}', [LeaveController::class, 'destroy'])->name('leaves.destroy');
 
-Route::group(['middleware' => ['role:Admin,HR, Manager']], function() {
+
+
 
 });
 
-Route::group(['middleware' => ['role:Admin,HR']], function() {
+
+Route::group(['middleware' => ['role:Admin,HR,Manager']], function () {
+    Route::resource('users', UserController::class);
+    Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
+Route::get('/leaves/{id}/edit', [LeaveController::class, 'edit'])->name('leaves.edit');
+});
+
+
+Route::group(['middleware' => ['role:Admin,HR']], function () {
     Route::resource('positions', PositionController::class);
     Route::resource('contract-types', ContractTypeController::class);
-
+    Route::resource('departments', DepartmentController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+ 
 });
 
-Route::group(['middleware' => ['role:Admin']], function() {
 
-});
-
-Route::middleware(['role:Admin'])->group(function () {
+Route::group(['middleware' => ['role:Admin']], function () {
     
-});
 
-Route::resource('permissions', PermissionController::class);
+
+});
 
 Route::resource('leaves', LeaveController::class);
 
-// Route::get('/leaves/create', [LeaveController::class, 'create'])->name('leaves.create');
-// Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
-// Route::post('/leaves/store', [LeaveController::class, 'store'])->name('leaves.store');
-// Route::get('/leaves/{id}/edit', [LeaveController::class, 'edit'])->name('leaves.edit');
-// Route::delete('/leaves/{id}', [LeaveController::class, 'destroy'])->name('leaves.destroy');
 
 
 require __DIR__.'/auth.php';
